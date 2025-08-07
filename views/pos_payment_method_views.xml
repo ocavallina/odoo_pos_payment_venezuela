@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="pos_payment_method_form_venezuela" model="ir.ui.view">
+        <field name="name">pos.payment.method.form.venezuela</field>
+        <field name="model">pos.payment.method</field>
+        <field name="inherit_id" ref="point_of_sale.pos_payment_method_view_form"/>
+        <field name="arch" type="xml">
+            <field name="use_payment_terminal" position="after">
+                <field name="is_venezuela"/>
+                <field name="venezuela_type" invisible="not is_venezuela"/>
+                <field name="venezuela_account" invisible="not is_venezuela" 
+                       placeholder="email@example.com o número de cuenta"/>
+                <field name="venezuela_bank" invisible="not is_venezuela"/>
+                <field name="venezuela_phone" invisible="not is_venezuela" 
+                       placeholder="Para Pago Móvil"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

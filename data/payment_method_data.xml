@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="pos_payment_method_zelle" model="pos.payment.method">
+        <field name="name">Zelle (POS)</field>
+        <field name="is_venezuela">True</field>
+        <field name="venezuela_type">zelle</field>
+        <field name="use_payment_terminal">False</field>
+    </record>
+
+    <record id="pos_payment_method_transfer_usd" model="pos.payment.method">
+        <field name="name">Transferencia USD</field>
+        <field name="is_venezuela">True</field>
+        <field name="venezuela_type">transfer_usd</field>
+        <field name="use_payment_terminal">False</field>
+    </record>
+
+    <record id="pos_payment_method_transfer_ves" model="pos.payment.method">
+        <field name="name">Transferencia VES</field>
+        <field name="is_venezuela">True</field>
+        <field name="venezuela_type">transfer_ves</field>
+        <field name="use_payment_terminal">False</field>
+    </record>
+
+    <record id="pos_payment_method_mobile_payment" model="pos.payment.method">
+        <field name="name">Pago Móvil</field>
+        <field name="is_venezuela">True</field>
+        <field name="venezuela_type">mobile_payment</field>
+        <field name="use_payment_terminal">False</field>
+    </record>
+
+    <record id="pos_payment_method_cash_usd" model="pos.payment.method">
+        <field name="name">Efectivo USD</field>
+        <field name="is_venezuela">True</field>
+        <field name="venezuela_type">cash_usd</field>
+        <field name="use_payment_terminal">False</field>
+    </record>
+
+</odoo>

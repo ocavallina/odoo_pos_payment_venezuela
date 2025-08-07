@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pos_payment_venezuela.VenezuelaPaymentPopup" owl="1">
+        <div class="popup popup-venezuela-payment">
+            <header class="title">
+                <t t-esc="props.title"/>
+            </header>
+            <main class="body">
+                <div class="venezuela-payment-form">
+                    <div class="form-group">
+                        <label>Monto:</label>
+                        <input t-model="state.amount" 
+                               type="number" 
+                               step="0.01" 
+                               class="form-control"/>
+                    </div>
+                    
+                    <div class="form-group" t-if="props.paymentMethod.venezuela_type !== 'cash_usd'">
+                        <label>Referencia/Confirmación:</label>
+                        <input t-model="state.reference" 
+                               type="text" 
+                               class="form-control"
+                               placeholder="Número de referencia"/>
+                    </div>
+                    
+                    <div class="form-group" t-if="props.paymentMethod.venezuela_account">
+                        <label>Destino:</label>
+                        <div class="form-control-static">
+                            <t t-esc="props.paymentMethod.venezuela_account"/>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Notas:</label>
+                        <textarea t-model="state.notes" 
+                                  class="form-control" 
+                                  rows="2"
+                                  placeholder="Información adicional..."></textarea>
+                    </div>
+                </div>
+            </main>
+            <footer class="footer">
+                <div class="button-container">
+                    <button class="button cancel" t-on-click="cancel">
+                        Cancelar
+                    </button>
+                    <button class="button confirm highlight" t-on-click="confirm">
+                        Confirmar
+                    </button>
+                </div>
+            </footer>
+        </div>
+    </t>
+
+</templates>

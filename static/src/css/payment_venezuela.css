@@ -1,0 +1,28 @@
+.popup-venezuela-payment {
+    width: 400px;
+}
+
+.venezuela-payment-form .form-group {
+    margin-bottom: 15px;
+}
+
+.venezuela-payment-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.venezuela-payment-form .form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.venezuela-payment-form .form-control-static {
+    padding: 8px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: monospace;
+}
