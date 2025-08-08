@@ -1,3 +1,4 @@
+<!-- static/src/xml/payment_venezuela.xml - ACTUALIZADO -->
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
 
@@ -8,7 +9,50 @@
             </header>
             <main class="body">
                 <div class="venezuela-payment-form">
-                    <div class="form-group">
+                    
+                    <!-- EFECTIVO: Mostrar campos especiales -->
+                    <div t-if="state.show_change" class="cash-payment-section">
+                        <div class="form-group">
+                            <label>💰 Efectivo Recibido (<t t-esc="state.currency_code"/>):</label>
+                            <input t-model="state.amount_given" 
+                                   type="number" 
+                                   step="0.01" 
+                                   class="form-control"
+                                   placeholder="Cantidad en efectivo"
+                                   t-on-change="onAmountGivenChange"/>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>🔄 Tasa de Cambio (1 <t t-esc="state.currency_code"/> = X <t t-esc="props.orderCurrency.name"/>):</label>
+                            <input t-model="state.exchange_rate" 
+                                   type="number" 
+                                   step="0.001" 
+                                   class="form-control"
+                                   t-on-change="onExchangeRateChange"/>
+                        </div>
+                        
+                        <!-- VISTA PREVIA DEL CÁLCULO -->
+                        <div class="calculation-preview">
+                            <div class="row">
+                                <strong>💵 Monto Convertido: </strong>
+                                <span t-esc="(state.amount_given * state.exchange_rate).toFixed(2)"/> 
+                                <t t-esc="props.orderCurrency.name"/>
+                            </div>
+                            <div class="row">
+                                <strong>🎯 Debido: </strong>
+                                <span t-esc="props.dueAmount.toFixed(2)"/> 
+                                <t t-esc="props.orderCurrency.name"/>
+                            </div>
+                            <div class="row change-amount" t-if="state.change_amount > 0">
+                                <strong>💸 Cambio: </strong>
+                                <span t-esc="state.change_amount.toFixed(2)"/> 
+                                <t t-esc="props.orderCurrency.name"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- OTROS MÉTODOS: Campo monto normal -->
+                    <div t-if="!state.show_change" class="form-group">
                         <label>Monto:</label>
                         <input t-model="state.amount" 
                                type="number" 
@@ -16,7 +60,8 @@
                                class="form-control"/>
                     </div>
                     
-                    <div class="form-group" t-if="props.paymentMethod.venezuela_type !== 'cash_usd'">
+                    <!-- REFERENCIA (no para efectivo) -->
+                    <div class="form-group" t-if="!state.show_change">
                         <label>Referencia/Confirmación:</label>
                         <input t-model="state.reference" 
                                type="text" 
@@ -24,13 +69,18 @@
                                placeholder="Número de referencia"/>
                     </div>
                     
-                    <div class="form-group" t-if="props.paymentMethod.venezuela_account">
+                    <!-- DATOS DE DESTINO -->
+                    <div class="form-group" t-if="props.paymentMethod.venezuela_account and !state.show_change">
                         <label>Destino:</label>
                         <div class="form-control-static">
                             <t t-esc="props.paymentMethod.venezuela_account"/>
+                            <span t-if="props.paymentMethod.venezuela_bank">
+                                - <t t-esc="props.paymentMethod.venezuela_bank"/>
+                            </span>
                         </div>
                     </div>
                     
+                    <!-- NOTAS -->
                     <div class="form-group">
                         <label>Notas:</label>
                         <textarea t-model="state.notes" 
@@ -38,6 +88,7 @@
                                   rows="2"
                                   placeholder="Información adicional..."></textarea>
                     </div>
+                    
                 </div>
             </main>
             <footer class="footer">
@@ -46,7 +97,8 @@
                         Cancelar
                     </button>
                     <button class="button confirm highlight" t-on-click="confirm">
-                        Confirmar
+                        <span t-if="state.show_change">💰 Confirmar Efectivo</span>
+                        <span t-else="">Confirmar</span>
                     </button>
                 </div>
             </footer>

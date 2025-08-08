@@ -1,5 +1,8 @@
+/* static/src/css/payment_venezuela.css - ACTUALIZADO */
+
 .popup-venezuela-payment {
-    width: 400px;
+    width: 450px;
+    max-width: 90vw;
 }
 
 .venezuela-payment-form .form-group {
@@ -10,19 +13,94 @@
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
+    color: #333;
 }
 
 .venezuela-payment-form .form-control {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 14px;
+}
+
+.venezuela-payment-form .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
 .venezuela-payment-form .form-control-static {
-    padding: 8px;
-    background-color: #f9f9f9;
+    padding: 10px;
+    background-color: #f8f9fa;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-family: monospace;
+    font-size: 13px;
+}
+
+/* ESTILOS PARA EFECTIVO */
+.cash-payment-section {
+    background: linear-gradient(145deg, #e8f5e8, #f0f8f0);
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #28a745;
+    margin-bottom: 15px;
+}
+
+.calculation-preview {
+    background: #fff;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    font-family: monospace;
+}
+
+.calculation-preview .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-bottom: 1px dotted #ccc;
+}
+
+.calculation-preview .row:last-child {
+    border-bottom: none;
+}
+
+.calculation-preview .change-amount {
+    background: #fff3cd;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ffeaa7;
+    font-weight: bold;
+    color: #856404;
+}
+
+/* BOTONES */
+.button-container {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.button.cancel {
+    background: #6c757d;
+    color: white;
+}
+
+.button.confirm {
+    background: #28a745;
+    color: white;
+}
+
+.button.highlight {
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
 }
